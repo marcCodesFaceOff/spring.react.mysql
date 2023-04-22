@@ -35,7 +35,7 @@ public class RosterController {
         return rosterService.get(bed);
     }
 
-    @DeleteMapping("/roster/{id}")
+    @DeleteMapping("/roster/{bed}")
     public String delete(@PathVariable int bed) {
 
         rosterService.delete(bed);
