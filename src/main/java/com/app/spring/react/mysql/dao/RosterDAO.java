@@ -8,7 +8,7 @@ public interface RosterDAO {
 
     Person get(int bed);
 
-    void save(Person employee);
+    void save(Person person);
 
     void delete(int bed);
 }

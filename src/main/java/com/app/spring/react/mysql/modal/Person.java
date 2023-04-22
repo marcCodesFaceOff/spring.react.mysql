@@ -42,7 +42,7 @@ public class Person {
     public String getLastName() {
         return last;
     }
-    public void setDepartment(String last) {
+    public void setLastName(String last) {
         this.last = last;
     }
     public Date getDob() {
