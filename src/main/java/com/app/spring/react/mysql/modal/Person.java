@@ -15,16 +15,16 @@ public class Person {
     @Column
     private Integer bed;
     @Column
-    private String firstName;
+    private String first;
     @Column
-    private String lastName;
+    private String last;
     @Column
     private Date dob;
     @Column
     private String gender;
     @Override
     public String toString() {
-        return "Employee [bed= " + bed + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", gender="
+        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", dob=" + dob + ", gender="
                 + gender + "]";
     }
     public Integer getBed() {
@@ -34,16 +34,16 @@ public class Person {
         this.bed = bed;
     }
     public String getFirstName() {
-        return firstName;
+        return first;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String first) {
+        this.first = first;
     }
     public String getLastName() {
-        return lastName;
+        return last;
     }
-    public void setDepartment(String lastName) {
-        this.lastName = lastName;
+    public void setDepartment(String last) {
+        this.last = last;
     }
     public Date getDob() {
         return dob;
