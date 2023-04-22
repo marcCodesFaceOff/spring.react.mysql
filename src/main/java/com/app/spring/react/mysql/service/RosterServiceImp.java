@@ -23,14 +23,14 @@ public class RosterServiceImp implements RosterService {
     }
     @Transactional
     @Override
-    public void save(Person employee) {
-        rosterDAO.save(employee);
+    public void save(Person person) {
+        rosterDAO.save(person);
 
     }
     @Transactional
     @Override
-    public void delete(int id) {
-        rosterDAO.delete(id);
+    public void delete(int bed) {
+        rosterDAO.delete(bed);
 
     }
 }
