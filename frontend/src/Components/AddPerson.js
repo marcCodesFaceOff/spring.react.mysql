@@ -1,6 +1,42 @@
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from '@mui/material/Button';
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { grey } from "@mui/material/colors";
+
+var classes = {
+    paper: {
+        marginTop: 7,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      },
+      avatar: {
+        margin: 1,
+        backgroundColor: grey
+      },
+      form: {
+        width: "100%", // Fix IE 11 issue.
+        marginTop: 3
+      },
+      submit: {
+        margin: 3
+      },
+      textField: {
+        marginLeft: 1,
+        marginRight: 1,
+        width: "100%"
+      }  
+}
+
+
 export default function AddPerson() {
 
-    const classes = useStyles();
     const [firstLoad, setLoad] = React.useState(true);
     
     const [selectedDate, setSelectedDate] = React.useState(
@@ -51,14 +87,13 @@ export default function AddPerson() {
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <GroupIcon />
+        <div style={classes.paper}>
+          <Avatar style={classes.avatar}>
           </Avatar>
           <Typography component="h1" variant="h5">
             Pathways Roster
           </Typography>
-          <form className={classes.form} noValidate>
+          <form style={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -105,7 +140,7 @@ export default function AddPerson() {
                   label="Date of birth"
                   type="date"
                   defaultValue="1998-04-02"
-                  className={classes.textField}
+                  style={classes.textField}
                   InputLabelProps={{
                     shrink: true
                   }}
@@ -118,7 +153,7 @@ export default function AddPerson() {
               variant="contained"
               color="primary"
               preventDefault
-              className={classes.submit}
+              style={classes.submit}
               onClick={handleSubmit}
             >
               Save
