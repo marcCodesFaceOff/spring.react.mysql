@@ -19,12 +19,12 @@ public class Person {
     @Column
     private String last;
     @Column
-    private Date dob;
+    private Date date;
     @Column
     private String gender;
     @Override
     public String toString() {
-        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", dob=" + dob + ", gender="
+        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", date=" + date + ", gender="
                 + gender + "]";
     }
     public Integer getBed() {
@@ -45,11 +45,11 @@ public class Person {
     public void setLastName(String last) {
         this.last = last;
     }
-    public Date getDob() {
-        return dob;
+    public Date getDate() {
+        return date;
     }
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setDate(Date date) {
+        this.date = date;
     }
     public String getGender() {
         return gender;
