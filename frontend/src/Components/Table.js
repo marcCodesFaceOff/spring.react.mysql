@@ -1,4 +1,7 @@
 import React from "react";
+// import Button from "@mui/material/Button"
+import DeleteIcon from "@mui/material/Icon"
+import IconButton from '@mui/material/IconButton';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -98,6 +101,7 @@ export default function SimpleTable() {
                     <TableCell align="center">{row.lastName}</TableCell>
                     <TableCell align="center">{row.gender}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
+                    <TableCell align="center"><IconButton aria-label="delete"><DeleteIcon /></IconButton></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -25,7 +25,8 @@ var classes = {
         marginTop: 3
       },
       submit: {
-        margin: 3
+        marginTop: 14,
+        marginBottom: 11
       },
       textField: {
         marginLeft: 1,
