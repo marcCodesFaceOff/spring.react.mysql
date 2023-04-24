@@ -82,8 +82,8 @@ export default function SimpleTable() {
                   <TableCell align="center">Bed#</TableCell>
                   <TableCell align="center">First Name</TableCell>
                   <TableCell align="center">Last Name</TableCell>
-                  <TableCell align="center">Gender</TableCell>
-                  <TableCell align="center">Dob</TableCell>
+                  <TableCell align="center">CM</TableCell>
+                  <TableCell align="center">Date</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -92,8 +92,8 @@ export default function SimpleTable() {
                     <TableCell align="center">{row.bed}</TableCell>
                     <TableCell align="center">{row.firstName}</TableCell>
                     <TableCell align="center">{row.lastName}</TableCell>
-                    <TableCell align="center">{row.gender}</TableCell>
-                    <TableCell align="center">{row.dob}</TableCell>
+                    <TableCell align="center">{row.CM}</TableCell>
+                    <TableCell align="center">{row.date}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
