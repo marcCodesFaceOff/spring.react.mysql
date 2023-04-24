@@ -49,7 +49,7 @@ export default function AddPerson() {
     const handleDateChange = date => setSelectedDate(date);
     const handleFirstNameChange = event => setFirstName(event.target.value);
     const handleLastNameChange = event => setLastName(event.target.value);
-    const handleCaseManagerChange = event => setGender(event.target.value);
+    const handleCaseManagerChange = event => setCaseManager(event.target.value);
   
     const [message, setMessage] = React.useState("Nothing saved in the session");
   
@@ -94,7 +94,7 @@ export default function AddPerson() {
           </Typography>
           <Avatar style={classes.avatar}>
           </Avatar>
-          <Typography component="h2" variant="h5">
+          <Typography component="h1" variant="h6">
             Pathways Roster
           </Typography>
           <form style={classes.form} noValidate>
@@ -130,11 +130,11 @@ export default function AddPerson() {
                   variant="outlined"
                   required
                   fullWidth
-                  id="cm"
-                  value={cm}
+                  id="caseManager"
+                  value={caseManager}
                   label="Case Manager"
-                  name="cm"
-                  autoComplete="cm"
+                  name="caseManager"
+                  autoComplete="caseManager"
                   onChange={handleCaseManagerChange}
                 />
               </Grid>

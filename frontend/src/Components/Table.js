@@ -48,24 +48,28 @@ export default function SimpleTable() {
     const [firstLoad, setLoad] = React.useState(true);
     let isLoading = true;
   
-    async function sampleFunc() {
+    async function getRoster() {
       let response = await fetch("/api/roster");
       let body = await response.json();
+      console.log(body);
       upDateData(body);
     }
   
     if (firstLoad) {
-      sampleFunc();
+      getRoster();
       setLoad(false);
     }
   
     if (data.length > 0) isLoading = false;
   
     return (
-      <div style={classes.paper}>
+      <div style={classes.paper}>       
+        <Typography component="h1" variant="h5">
+          New Directions
+        </Typography>
         <Avatar style={classes.avatar}>
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h6">
           Pathways Roster
         </Typography>
   
@@ -82,8 +86,8 @@ export default function SimpleTable() {
                   <TableCell align="center">Bed#</TableCell>
                   <TableCell align="center">First Name</TableCell>
                   <TableCell align="center">Last Name</TableCell>
-                  <TableCell align="center">CM</TableCell>
-                  <TableCell align="center">Date</TableCell>
+                  <TableCell align="center">Case Manager</TableCell>
+                  <TableCell align="center">Entry Date</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -92,7 +96,7 @@ export default function SimpleTable() {
                     <TableCell align="center">{row.bed}</TableCell>
                     <TableCell align="center">{row.firstName}</TableCell>
                     <TableCell align="center">{row.lastName}</TableCell>
-                    <TableCell align="center">{row.CM}</TableCell>
+                    <TableCell align="center">{row.gender}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
                   </TableRow>
                 ))}
