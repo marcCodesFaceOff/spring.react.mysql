@@ -40,16 +40,16 @@ export default function AddPerson() {
     const [firstLoad, setLoad] = React.useState(true);
     
     const [selectedDate, setSelectedDate] = React.useState(
-      new Date("1998-04-02T21:11:54")
+      new Date("2023-04-02T21:11:54")
     );
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
-    const [gender, setGender] = React.useState("");
+    const [caseManager, setCaseManager] = React.useState("");
   
     const handleDateChange = date => setSelectedDate(date);
     const handleFirstNameChange = event => setFirstName(event.target.value);
     const handleLastNameChange = event => setLastName(event.target.value);
-    const handleGenderChange = event => setGender(event.target.value);
+    const handleCaseManagerChange = event => setGender(event.target.value);
   
     const [message, setMessage] = React.useState("Nothing saved in the session");
   
@@ -69,15 +69,16 @@ export default function AddPerson() {
     });
       let body = await response.json();
       console.log(body.id);
-      setMessage(body.id ? "Data sucessfully updated" : "Data updation failed");
+      setMessage(body.id ? "Data sucessfully updated" : "Data update failed");
     }
   
     const handleSubmit = variables => {
-      const toInput = { firstName, lastName, gender, dob: selectedDate };
+      const toInput = { firstName, lastName, caseManager, date: selectedDate };
       sampleFunc(toInput);
       setFirstName("");
       setLastName("");
-      setGender("");
+      setCaseManager("");
+      setSelectedDate("");
     };
   
     if (firstLoad) {
@@ -88,9 +89,12 @@ export default function AddPerson() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div style={classes.paper}>
+        <Typography component="h1" variant="h5">
+            New Directions
+          </Typography>
           <Avatar style={classes.avatar}>
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h2" variant="h5">
             Pathways Roster
           </Typography>
           <form style={classes.form} noValidate>
@@ -126,20 +130,20 @@ export default function AddPerson() {
                   variant="outlined"
                   required
                   fullWidth
-                  id="gender"
-                  value={gender}
-                  label="Gender"
-                  name="gender"
-                  autoComplete="gender"
-                  onChange={handleGenderChange}
+                  id="cm"
+                  value={cm}
+                  label="Case Manager"
+                  name="cm"
+                  autoComplete="cm"
+                  onChange={handleCaseManagerChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   id="date"
-                  label="Date of birth"
+                  label="Date Of Entry"
                   type="date"
-                  defaultValue="1998-04-02"
+                  defaultValue="2023-01-01"
                   style={classes.textField}
                   InputLabelProps={{
                     shrink: true
@@ -159,11 +163,9 @@ export default function AddPerson() {
               Save
             </Button>
   
-            <Grid container justify="center">
-              <Grid item>
-                <Link to="/view">View Pathways Roster</Link>
-              </Grid>
-            </Grid>
+              <div style={{display:"flex", alignItems:"center", justifyContent:"center", margin:4}}>
+              <Link to="/view">View Pathways Roster</Link>
+              </div>
           </form>
           <Typography style={{ margin: 7 }} variant="body1">
             Status: {message}

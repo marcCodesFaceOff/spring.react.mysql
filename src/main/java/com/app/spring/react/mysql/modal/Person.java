@@ -21,11 +21,11 @@ public class Person {
     @Column
     private Date date;
     @Column
-    private String gender;
+    private String CM;
     @Override
     public String toString() {
-        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", date=" + date + ", gender="
-                + gender + "]";
+        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", date=" + date + ", CM="
+                + CM + "]";
     }
     public Integer getBed() {
         return bed;
@@ -52,9 +52,9 @@ public class Person {
         this.date = date;
     }
     public String getGender() {
-        return gender;
+        return CM;
     }
     public void setGender(String gender) {
-        this.gender = gender;
+        this.CM = CM;
     }
 }
