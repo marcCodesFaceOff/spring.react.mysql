@@ -7,18 +7,19 @@ import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { grey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 
 var classes = {
     paper: {
         marginTop: 7,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
       },
       avatar: {
         margin: 1,
-        backgroundColor: grey
+        backgroundColor: blueGrey,
+        color:"blue"
       },
       form: {
         width: "100%", // Fix IE 11 issue.
@@ -38,23 +39,26 @@ var classes = {
 
 export default function AddPerson() {
 
-    const [firstLoad, setLoad] = React.useState(true);
-    
+    const [firstLoad, setLoad] = React.useState(true);  
+
     const [selectedDate, setSelectedDate] = React.useState(
       new Date("2023-04-02T21:11:54")
-    );
+    ); 
+
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
     const [caseManager, setCaseManager] = React.useState("");
+
   
-    const handleDateChange = date => setSelectedDate(date);
+    const handleDateChange = date => setSelectedDate(date.target.value);
     const handleFirstNameChange = event => setFirstName(event.target.value);
     const handleLastNameChange = event => setLastName(event.target.value);
     const handleCaseManagerChange = event => setCaseManager(event.target.value);
   
     const [message, setMessage] = React.useState("Nothing saved in the session");
   
-    async function sampleFunc(toInput) {
+    async function addToRoster(toInput) {
+      console.log("toInput", toInput)
       const response = await fetch("/api/roster", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
@@ -67,19 +71,20 @@ export default function AddPerson() {
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer", // no-referrer, *client
         body: JSON.stringify(toInput) // body data type must match "Content-Type" header
-    });
+      });
       let body = await response.json();
-      console.log(body.id);
-      setMessage(body.id ? "Data sucessfully updated" : "Data update failed");
+      console.log(body);
+      console.log(body.bed);
+      setMessage(body.bed ? "Data sucessfully updated" : "Data updation failed");
     }
+    
   
     const handleSubmit = variables => {
       const toInput = { firstName, lastName, caseManager, date: selectedDate };
-      sampleFunc(toInput);
+      addToRoster(toInput);
       setFirstName("");
       setLastName("");
       setCaseManager("");
-      setSelectedDate("");
     };
   
     if (firstLoad) {
@@ -99,7 +104,7 @@ export default function AddPerson() {
             Pathways Roster
           </Typography>
           <form style={classes.form} noValidate>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -113,7 +118,7 @@ export default function AddPerson() {
                   onChange={handleFirstNameChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="lastName"
                   name="lastName"
@@ -126,7 +131,7 @@ export default function AddPerson() {
                   onChange={handleLastNameChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   variant="outlined"
                   required
@@ -157,7 +162,6 @@ export default function AddPerson() {
               fullWidth
               variant="contained"
               color="primary"
-              preventDefault
               style={classes.submit}
               onClick={handleSubmit}
             >

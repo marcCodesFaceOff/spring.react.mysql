@@ -1,6 +1,5 @@
 import React from "react";
-// import Button from "@mui/material/Button"
-import DeleteIcon from "@mui/material/Icon"
+import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -21,6 +20,7 @@ const classes = {
       },
       avatar: {
         margin: 1,
+        color: "blue",
         backgroundColor: blueGrey
       },
       paper: {
@@ -28,10 +28,9 @@ const classes = {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: `10px`,
         height: "100%",
-        width: "99%",
-        marginTop: 7
+        width: "100%",
+        backgroundColor: "lightGrey"
       },
       link: {
         color: "rgba(0,0,0,0.65)",
@@ -44,7 +43,6 @@ const classes = {
       }
 }
 
-
 export default function SimpleTable() {
   
     const [data, upDateData] = React.useState([]);
@@ -54,16 +52,17 @@ export default function SimpleTable() {
     async function getRoster() {
       let response = await fetch("/api/roster");
       let body = await response.json();
-      console.log(body);
+      console.log("body:", body[0].bed);
       upDateData(body);
     }
+
   
     if (firstLoad) {
       getRoster();
       setLoad(false);
     }
   
-    if (data.length > 0) isLoading = false;
+    if (data.length > 0) isLoading = false; 
   
     return (
       <div style={classes.paper}>       
@@ -91,6 +90,7 @@ export default function SimpleTable() {
                   <TableCell align="center">Last Name</TableCell>
                   <TableCell align="center">Case Manager</TableCell>
                   <TableCell align="center">Entry Date</TableCell>
+                  <TableCell align="center">Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -99,9 +99,9 @@ export default function SimpleTable() {
                     <TableCell align="center">{row.bed}</TableCell>
                     <TableCell align="center">{row.firstName}</TableCell>
                     <TableCell align="center">{row.lastName}</TableCell>
-                    <TableCell align="center">{row.gender}</TableCell>
+                    <TableCell align="center">{row.caseManager}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center"><IconButton aria-label="delete"><DeleteIcon /></IconButton></TableCell>
+                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={(e) => this.deleteRow(row.bed, e)}><DeleteIcon/></IconButton></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
