@@ -1,12 +1,9 @@
 package com.app.spring.react.mysql.modal;
 
 import java.sql.Date;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "tb_roster")
 public class Person {
@@ -24,8 +21,7 @@ public class Person {
     private String cm;
     @Override
     public String toString() {
-        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", date=" + date + ", cm="
-                + cm + "]";
+        return "Employee [bed= " + bed + ", firstName=" + first + ", lastName=" + last + ", date=" + date + ", caseManager=" + cm + "]";
     }
     public Integer getBed() {
         return bed;
@@ -51,10 +47,10 @@ public class Person {
     public void setDate(Date date) {
         this.date = date;
     }
-    public String getGender() {
+    public String getCaseManager() {
         return cm;
     }
-    public void setGender(String gender) {
+    public void setCaseManager(String cm) {
         this.cm = cm;
     }
 }
