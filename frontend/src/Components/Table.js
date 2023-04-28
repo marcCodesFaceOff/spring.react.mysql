@@ -70,7 +70,6 @@ class SimpleTable extends Component {
           'Content-Type': 'application/json'
       }
     };
-
     axios.get(url,{}, config)
       .then((response) => response.data)
       .then((data) => {
@@ -83,37 +82,32 @@ class SimpleTable extends Component {
       });
   }
 
-  deletePerson = (rowId) => {
-    this.props.deletePerson(rowId);
-    setTimeout(() => {
-      if (this.props.personObject != null) {
-        this.setState({ show: true });
-        setTimeout(() => this.setState({ show: false }), 3000);
-        this.findAllBooks(this.state.currentPage);
-      } else {
-        this.setState({ show: false });
+   deletePerson(rowId) {
+    const url = `http://localhost:8080/api/roster/${rowId}`;
+    const config = {
+      headers:{
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
       }
-    }, 1000);
-  };
+    };
+    axios.delete(url,{}, config)
+      .then((response) => response.data)
+      .then((data) => {
+        this.setState({
+          roster: data,
+        });      
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   
-    // async function getRoster() {
-    //   let response = await fetch("/api/roster");
-    //   let body = await response.json();
-    //   console.log("body:", body[0].bed);
-    //   upDateData(body);
-    // }
-
-  
-    // if (firstLoad) {
-    //   getRoster();
-    //   setLoad(false);
-    // }
-  
-    // if (data.length > 0) isLoading = false; 
-  
-    render() {
+  render() {
 
       const isLoading = false;
+      const {roster} = this.state;
+      console.log(roster)
 
       return (
       <div style={classes.paper}>       
@@ -144,15 +138,21 @@ class SimpleTable extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.state.roster?.map(row => (
+              {roster.length === 0 ? (
+                  <tr align="center">
+                    <td colSpan="7" style={{color:"red"}}>Roster is empty!</td>
+                  </tr>
+                ) : (
+                  roster?.map((row) => (
                   <TableRow key={row.bed}>
                     <TableCell align="center">{row.firstName}</TableCell>
                     <TableCell align="center">{row.lastName}</TableCell>
                     <TableCell align="center">{row.caseManager}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => this.deletePerson(this.state.roster.bed)}><DeleteIcon/></IconButton></TableCell>
+                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => this.deletePerson(row.bed)}><DeleteIcon/></IconButton></TableCell>
                   </TableRow>
-                ))}
+                  ))
+                )}
               </TableBody>
             </Table>
           </TableContainer>
@@ -163,9 +163,11 @@ class SimpleTable extends Component {
           </Typography>
         </Link>
       </div>
-    );
+    )
   }
-  }
+}
+
+  
 
   const mapStateToProps = (state) => {
     return {
