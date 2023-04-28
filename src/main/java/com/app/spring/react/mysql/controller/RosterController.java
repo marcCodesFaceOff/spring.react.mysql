@@ -31,11 +31,8 @@ public class RosterController {
 
     @DeleteMapping("/roster/{bed}")
     public String delete(@PathVariable int bed) {
-
         rosterService.delete(bed);
-
         return "Roster removed person at bed "+bed;
-
     }
 
     @PutMapping("/roster")

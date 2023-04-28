@@ -58,7 +58,6 @@ export default function AddPerson() {
     const [message, setMessage] = React.useState("Nothing saved in the session");
   
     async function addToRoster(toInput) {
-      console.log("toInput", toInput)
       const response = await fetch("/api/roster", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
@@ -73,9 +72,7 @@ export default function AddPerson() {
         body: JSON.stringify(toInput) // body data type must match "Content-Type" header
       });
       let body = await response.json();
-      console.log(body);
-      console.log(body.bed);
-      setMessage(body.bed ? "Data sucessfully updated" : "Data updation failed");
+      setMessage(body.bed ? "Data sucessfully updated!" : "Data update failed!");
     }
     
   
@@ -172,7 +169,7 @@ export default function AddPerson() {
               <Link to="/view">View Pathways Roster</Link>
               </div>
           </form>
-          <Typography style={{ margin: 7 }} variant="body1">
+          <Typography style={{ margin: 7, color:"blue" }} variant="body1">
             Status: {message}
           </Typography>
         </div>
