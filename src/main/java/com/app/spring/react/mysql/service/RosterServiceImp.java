@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.spring.react.mysql.dao.RosterDAO;
 import com.app.spring.react.mysql.modal.Person;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @Service
 public class RosterServiceImp implements RosterService {
 
     @Autowired
     private RosterDAO rosterDAO;
+
     @Transactional
     @Override
     public List<Person> get() {
