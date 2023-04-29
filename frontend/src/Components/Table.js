@@ -96,18 +96,23 @@ class SimpleTable extends Component {
       .then((data) => {
         this.setState({
           roster: data,
-        });      
+        }); 
+        console.log("delete roster: ", this.state.roster)
       })
       .catch((error) => {
         console.log(error);
       });
     }
+
+    handleDelete(rowId) {
+      this.deletePerson(rowId)
+    };
   
   render() {
 
       const isLoading = false;
       const {roster} = this.state;
-      console.log(roster)
+      console.log("render of roster: ", roster)
 
       return (
       <div style={classes.paper}>       
@@ -143,13 +148,13 @@ class SimpleTable extends Component {
                     <td colSpan="7" style={{color:"red"}}>Roster is empty!</td>
                   </tr>
                 ) : (
-                  roster?.map((row) => (
+                  roster.map((row) => (
                   <TableRow key={row.bed}>
                     <TableCell align="center">{row.firstName}</TableCell>
                     <TableCell align="center">{row.lastName}</TableCell>
                     <TableCell align="center">{row.caseManager}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => this.deletePerson(row.bed)}><DeleteIcon/></IconButton></TableCell>
+                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => handleDelete(row.bed)}><DeleteIcon/></IconButton></TableCell>
                   </TableRow>
                   ))
                 )}
