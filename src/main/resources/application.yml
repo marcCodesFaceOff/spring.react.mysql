@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_1428b5620695a65"
+    username: b960b12d702a72
+    password: 5e874cbe19d3317
+    hikari:
+      maxLifetime: 20000
