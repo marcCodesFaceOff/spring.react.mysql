@@ -154,7 +154,7 @@ class SimpleTable extends Component {
                     <TableCell align="center">{row.lastName}</TableCell>
                     <TableCell align="center">{row.caseManager}</TableCell>
                     <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => handleDelete(row.bed)}><DeleteIcon/></IconButton></TableCell>
+                    <TableCell align="center"><IconButton aria-label="delete" style={{color:"red"}} onClick={() => this.handleDelete(row.bed)}><DeleteIcon/></IconButton></TableCell>
                   </TableRow>
                   ))
                 )}
