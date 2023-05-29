@@ -19,6 +19,9 @@ public class Application {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/api/roster-java-config").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/api/roster-java-config").allowedOrigins("http://localhost:8080/api/roster");
+				registry.addMapping("/api/roster-java-config").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/api/roster-java-config").allowedOrigins("http://localhost:3000/view");
 			}
 		};
 	}
